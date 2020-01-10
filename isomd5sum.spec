@@ -1,7 +1,7 @@
 Summary: Utilities for working with md5sum implanted in ISO images
 Name: isomd5sum
 Version: 1.0.10
-Release: 1%{?dist}
+Release: 4%{?dist}
 Epoch: 1
 License: GPLv2+
 Group: Applications/System
@@ -9,6 +9,7 @@ URL: http://git.fedorahosted.org/git/?p=isomd5sum.git;a=summary
 Source0: http://fedorahosted.org/releases/i/s/isomd5sum/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: popt-devel
+Patch0: 0001-Add-aarch64-1041320.patch
 
 %description
 The isomd5sum package contains utilities for implanting and verifying
@@ -33,6 +34,7 @@ Python bindings for isomd5sum
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS -Wno-strict-aliasing"; export CFLAGS
@@ -63,6 +65,16 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitearch}/pyisomd5sum.so
 
 %changelog
+* Tue Jan 28 2014 Radek Vykydal <rvykydal@redhat.com> - 1:1.0.10-4
+- Add aarch64 (bcl)
+  Resolves: rhbz#1041320
+
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1:1.0.10-3
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1:1.0.10-2
+- Mass rebuild 2013-12-27
+
 * Tue Feb 26 2013 Brian C. Lane <bcl@redhat.com> 1.0.10-1
 - Fix for gcc type-punned and sizeof pointer warnings. (bcl)
 - Add exit code 2 for user abort (#907600) (bcl)

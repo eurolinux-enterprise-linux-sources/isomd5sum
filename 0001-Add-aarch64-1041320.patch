@@ -1,0 +1,25 @@
+From b6b2bddecfa773bb2ea55332ed0dfd944337628f Mon Sep 17 00:00:00 2001
+From: Radek Vykydal <rvykydal@redhat.com>
+Date: Tue, 28 Jan 2014 13:09:55 +0100
+Subject: [PATCH] Add aarch64 (#1041320)
+
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index cf77b78..1d95534 100644
+--- a/Makefile
++++ b/Makefile
+@@ -4,7 +4,7 @@ PYTHONINCLUDE = /usr/include/$(PYTHON)
+ 
+ VERSION=1.0.10
+ 
+-ifneq (,$(filter sparc64 ppc64 x86_64 s390x,$(shell uname -m)))
++ifneq (,$(filter aarch64 sparc64 ppc64 x86_64 s390x,$(shell uname -m)))
+ LIBDIR = lib64
+ else
+ LIBDIR = lib
+-- 
+1.7.11.7
+
