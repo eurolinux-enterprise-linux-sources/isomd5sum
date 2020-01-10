@@ -1,7 +1,7 @@
 Summary: Utilities for working with md5sum implanted in ISO images
 Name: isomd5sum
 Version: 1.0.10
-Release: 4%{?dist}
+Release: 5%{?dist}
 Epoch: 1
 License: GPLv2+
 Group: Applications/System
@@ -10,6 +10,7 @@ Source0: http://fedorahosted.org/releases/i/s/isomd5sum/%{name}-%{version}.tar.b
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: popt-devel
 Patch0: 0001-Add-aarch64-1041320.patch
+Patch1: 0002-Add-ppc64le-1125552.patch
 
 %description
 The isomd5sum package contains utilities for implanting and verifying
@@ -35,6 +36,7 @@ Python bindings for isomd5sum
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS -Wno-strict-aliasing"; export CFLAGS
@@ -65,6 +67,10 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitearch}/pyisomd5sum.so
 
 %changelog
+* Tue Aug 26 2014 Radek Vykydal <rvykydal@redhat.com> - 1:1.0.10-5
+- Add ppc64le (aldyh@redhat.com)
+  Resolves: rhbz#1125552
+
 * Tue Jan 28 2014 Radek Vykydal <rvykydal@redhat.com> - 1:1.0.10-4
 - Add aarch64 (bcl)
   Resolves: rhbz#1041320
